@@ -25,7 +25,7 @@ layout: default
     species and diseases.
   </p>
   <h2>Preprocessing Methods</h2>
-  <h3>Contrast Enhancement</h3>
+  <h4>Contrast Enhancement</h4>
   <ul>
     <li>
       Utilize scikit-image library (the rescale_intensity method) to increase
@@ -33,45 +33,58 @@ layout: default
       model to identify the plants from the background.
     </li>
   </ul>
-  <h3>Smoothing Edges</h3>
-  <p>
-    Utilize gaussian function within the skimage.filters module to smooth edges
-    and remove noise from the leaf images. Using the gaussian function on the
-    plant images would remove any unnecessary features that don’t correlate with
-    disease in the plant leaves, helping our algorithms perform better.
-  </p>
-  <h3>Grayscale</h3>
-  <p>
-    Utilize rgb2gray method from the skimage.color module to convert the colored
-    plant leaf images to grayscale. Training our model with both colored as well
-    as grayscale images would help the model identify disease utilizing the
-    color of the leaf as well as other important features such as lesions.
-  </p>
+  <h4>Smoothing Edges</h4>
+  <ul>
+    <li>
+      Utilize gaussian function within the skimage.filters module to smooth
+      edges and remove noise from the leaf images. Using the gaussian function
+      on the plant images would remove any unnecessary features that don't
+      correlate with disease in the plant leaves, helping our algorithms perform
+      better.
+    </li>
+  </ul>
+  <h4>Grayscale</h4>
+  <ul>
+    <li>
+      Utilize rgb2gray method from the skimage.color module to convert the
+      colored plant leaf images to grayscale. Training our model with both
+      colored as well as grayscale images would help the model identify disease
+      utilizing the color of the leaf as well as other important features such
+      as lesions.
+    </li>
+  </ul>
 
   <h2>Algorithms/Models</h2>
-  <h3>Convolutional Neural Network</h3>
-  <p>
-    Train a Convolutional Neural Network (CNN) through TensorFlow by using
-    Conv2D and MaxPooling2D layers. First, the image features will be extracted
-    with convolutional layers. Then, with the FC layers and feature information,
-    the model will conclude whether the leaf is from a healthy or unhealthy
-    plant.
-  </p>
-  <h3>Decision Tree Classifier</h3>
-  <p>
-    Use DecisionTreeClassifier class from Scikit to classify leaf data into
-    classes of being healthy or unhealthy. Scikit used the CART (Classification
-    and Regression Trees) algorithm to back its decision tree classifier, which
-    diverges from the C4.5 algorithm in that it doesn’t compute rule sets.
-  </p>
-  <h3>Bagging Classifier</h3>
-  <p>
-    Use sklearn.ensemble.BaggingClassifier to classify our data. This classifier
-    works by forming predictions based on randomized subsets of data; then by
-    combining the predictions from the randomized subsets, the classifier forms
-    a final prediction. By randomizing, this classifier is useful since it
-    reduces variance, helping reduce overfitting.
-  </p>
+  <h4>Convolutional Neural Network</h4>
+  <ul>
+    <li>
+      Train a Convolutional Neural Network (CNN) through TensorFlow by using
+      Conv2D and MaxPooling2D layers. First, the image features will be
+      extracted with convolutional layers. Then, with the FC layers and feature
+      information, the model will conclude whether the leaf is from a healthy or
+      unhealthy plant.
+    </li>
+  </ul>
+  <h4>Decision Tree Classifier</h4>
+  <ul>
+    <li>
+      Use DecisionTreeClassifier class from Scikit to classify leaf data into
+      classes of being healthy or unhealthy. Scikit used the CART
+      (Classification and Regression Trees) algorithm to back its decision tree
+      classifier, which diverges from the C4.5 algorithm in that it doesn't
+      compute rule sets.
+    </li>
+  </ul>
+  <h4>Bagging Classifier</h4>
+  <ul>
+    <li>
+      Use sklearn.ensemble.BaggingClassifier to classify our data. This
+      classifier works by forming predictions based on randomized subsets of
+      data; then by combining the predictions from the randomized subsets, the
+      classifier forms a final prediction. By randomizing, this classifier is
+      useful since it reduces variance, helping reduce overfitting.
+    </li>
+  </ul>
 
   <h2>Quantitative Metrics</h2>
   <ul>
