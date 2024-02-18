@@ -25,20 +25,22 @@ layout: default
     species and diseases.
   </p>
   <h2>Preprocessing Methods</h2>
-  <h4>Contrast Enhancement</h4>
-  <p>
-    Utilize scikit-image library (the rescale_intensity method) to increase the
-    contrast in the plant images, which would make it easier for our CNN model
-    to identify the plants from the background.
-  </p>
-  <h4>Smoothing Edges</h4>
+  <h3>Contrast Enhancement</h3>
+  <ul>
+    <li>
+      Utilize scikit-image library (the rescale_intensity method) to increase
+      the contrast in the plant images, which would make it easier for our CNN
+      model to identify the plants from the background.
+    </li>
+  </ul>
+  <h3>Smoothing Edges</h3>
   <p>
     Utilize gaussian function within the skimage.filters module to smooth edges
     and remove noise from the leaf images. Using the gaussian function on the
     plant images would remove any unnecessary features that don’t correlate with
     disease in the plant leaves, helping our algorithms perform better.
   </p>
-  <h4>Grayscale</h4>
+  <h3>Grayscale</h3>
   <p>
     Utilize rgb2gray method from the skimage.color module to convert the colored
     plant leaf images to grayscale. Training our model with both colored as well
@@ -47,7 +49,7 @@ layout: default
   </p>
 
   <h2>Algorithms/Models</h2>
-  <h4>Convolutional Neural Network</h4>
+  <h3>Convolutional Neural Network</h3>
   <p>
     Train a Convolutional Neural Network (CNN) through TensorFlow by using
     Conv2D and MaxPooling2D layers. First, the image features will be extracted
@@ -55,14 +57,14 @@ layout: default
     the model will conclude whether the leaf is from a healthy or unhealthy
     plant.
   </p>
-  <h4>Decision Tree Classifier</h4>
+  <h3>Decision Tree Classifier</h3>
   <p>
     Use DecisionTreeClassifier class from Scikit to classify leaf data into
     classes of being healthy or unhealthy. Scikit used the CART (Classification
     and Regression Trees) algorithm to back its decision tree classifier, which
     diverges from the C4.5 algorithm in that it doesn’t compute rule sets.
   </p>
-  <h4>Bagging Classifier</h4>
+  <h3>Bagging Classifier</h3>
   <p>
     Use sklearn.ensemble.BaggingClassifier to classify our data. This classifier
     works by forming predictions based on randomized subsets of data; then by
@@ -91,11 +93,11 @@ layout: default
     [1] Hassan, S. M., & Maji, A. K. (2022). Plant disease identification using
     a novel convolutional neural network. IEEE Access, 10, 5390–5401.
     https://doi.org/10.1109/access.2022.3141371
-    <br />
+    <br /><br />
     [2] Kulkarni, P., Karwande, A., Kolhe, T., Kamble, S., Joshi, A., &
     Wyawahare, M. (2021). Plant Disease Detection Using Image Processing and
     Machine Learning. https://doi.org/10.48550/arXiv.2106.10698
-    <br />
+    <br /><br />
     [3] Shoaib, M., Shah, B., EI-Sappagh, S., Ali, A., Ullah, A., Alenezi, F.,
     Gechev, T., Hussain, T., & Ali, F. (2023). An advanced deep learning
     models-based Plant Disease Detection: A review of recent research. Frontiers
