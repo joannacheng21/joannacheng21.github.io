@@ -3,6 +3,6 @@ description: >- # this means to ignore newlines until "baseurl:"
   Ruby on Rails tips & tricks, courses, screencasts.
   Also my adventures in hackathons, startups, teaching online.
 #baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://blog.corsego.com"
+url: "https://joannacheng21.github.io/"
 
 remote_theme: jekyll/minima
