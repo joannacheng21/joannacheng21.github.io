@@ -5,88 +5,99 @@
     <meta name="description" content="Our first page" />
   </head>
   <body>
-    Introduction/Background We all depend on crops as a major part of our global
-    food supply, and as a result, the swift detection of crop diseases is
-    essential to maximizing the output of our fields and ensuring the health of
-    the ingredients used in everyday products. However, manual detection of
-    plant diseases is tedious and slow; during the process of identification,
-    disease continues to propagate rapidly. It also requires a high level of
-    expertise, and even so, can be highly error prone [3]. Many of these reasons
-    have spurred research efforts to use machine learning techniques, like
-    random forest classifiers, to identify specific types of disease in certain
-    crops in order to aid in quick prevention of the spread of harmful blights
-    [2]. Other papers have ventured beyond traditional machine learning methods;
-    one group used CNNs to classify a dataset of diseased and healthy plant
-    leaves to achieve a 99.3% accuracy [1]. We plan to use the PlantVillage
-    dataset, which contains 54,303 images of healthy and diseased plant leaves
-    from 13 species. It can be found here. Problem Definition We aim to develop
-    a machine learning model that can differentiate between whether a given leaf
-    image is healthy or unhealthy across a variety of species and diseases.
-    Preprocessing Methods Contrast Enhancement We can utilize the scikit-image
-    library (more specifically, the rescale_intensity method) to increase the
-    contrast in the plant images, which would make it easier for our CNN model
-    to identify the plants from the background. Smoothing edges We can utilize
-    the gaussian function within the skimage.filters module to smooth edges and
-    remove noise from the plant leaf images. Using the gaussian function on the
-    plant images would remove any unnecessary features that don’t correlate with
-    disease in the plant leaves, helping our ML algorithms perform better.
-    Grayscale We can utilize the rgb2gray method from the skimage.color module
-    to convert the colored plant leaf images to grayscale. Training our machine
-    learning model with both colored as well as grayscale images would help the
-    model identify disease utilizing the color of the leaf as well as other
-    important features (such as lesions/spots). 3+ ML Algorithms/Models
-    Identified Convolutional Neural Network We can train a Convolutional Neural
-    Network (CNN) through TensorFlow by using Conv2D and MaxPooling2D layers.
-    First, the image features will be extracted with convolutional layers. Then,
-    with the FC layers and feature information, the model will conclude whether
-    the leaf is from a healthy or unhealthy plant. Decision Tree Classifier The
-    DecisionTreeClassifier class from Scikit can be used to classify leaf data
-    into classes of being healthy or unhealthy. Scikit used the CART
-    (Classification and Regression Trees) algorithm to back its decision tree
-    classifier, which diverges from the C4.5 algorithm in that it doesn’t
-    compute rule sets. A Bagging Classifier We could use
-    sklearn.ensemble.BaggingClassifier to classify our data. This classifier
-    works by choosing randomized subsets of data to classify. Then, by combining
-    the predictions from the randomized subsets, the classifier forms a final
-    prediction. By randomizing, this classifier is useful since it reduces
-    variance, helping reduce overfitting. 3+ Quantitative Metrics Accuracy:
-    Measure the proportion of correctly identified diseased plants:
-    metrics.accuracy_score(y_true, y_pred, *[, ...]) Precision: Measure
-    proportion of correctly identified diseased plants out of all plants
-    identified as diseased (true positives/true positives + false positives):
-    metrics.average_precision_score(y_true, ...) Recall: Measure proportion of
-    correctly identified diseased plants out of all actually diseased plants
-    (true positives/true positives + false negatives):
-    metrics.recall_score(y_true, y_pred, *[, ...]) F1 Score: Harmonic mean of
-    precision and recall: metrics.f1_score(y_true, y_pred, *[, ...]) Other
-    options: Confusion Matrix, ROC AUC Score Project Goals In this project, our
-    goal is to develop an effective model to identify diseased and healthy
-    plants. We hope our model will have a classification accuracy above 90%
-    detection for healthy vs unhealthy. We aim for precision and recall rates
-    above 0.90 to indicate less false positives and negatives as well as
-    resulting F1 Score around 0.90 to indicate a balance in the precision and
-    recall. References [1] Hassan, S. M., & Maji, A. K. (2022). Plant disease
-    identification using a novel convolutional neural network. IEEE Access, 10,
-    5390–5401. https://doi.org/10.1109/access.2022.3141371 [2] Kulkarni, P.,
-    Karwande, A., Kolhe, T., Kamble, S., Joshi, A., & Wyawahare, M. (2021).
-    Plant Disease Detection Using Image Processing and Machine Learning.
-    https://doi.org/10.48550/arXiv.2106.10698 [3] Shoaib, M., Shah, B.,
-    EI-Sappagh, S., Ali, A., Ullah, A., Alenezi, F., Gechev, T., Hussain, T., &
-    Ali, F. (2023). An advanced deep learning models-based Plant Disease
-    Detection: A review of recent research. Frontiers in Plant Science, 14.
-    https://doi.org/10.3389/fpls.2023.1158933 Gantt Chart: list each members’
-    planned responsibilities for the entirety of the project. Feel free to use
-    the Fall and Spring semester sample Gantt Chart. Contribution Table: list
-    all group members’ names and explicit contributions in preparing the
-    proposal using the format below. Name Proposal Contributions Joanna Cheng
-    Literature review, introduction/background Aishwarya Chakravarthy Data
-    preprocessing, Gantt chart Keerthi Konuganti ML algorithms/models Felicia
-    Jamba Potential results and background (ML metrics) Aaron Liu Problem
-    definition, Project goals
-    https://huggingface.co/datasets/Francesco/cotton-plant-disease
-    https://tensorflow.org/datasets/catalog/plant_village
-    https://www.kaggle.com/datasets/emmarex/plantdisease
-    https://huggingface.co/datasets/nelorth/oxford-flowers
-    https://www.kaggle.com/datasets/abdallahalidev/plantvillage-dataset
+    <h2>Introduction/Background</h2>
+    <p>
+      We all depend on crops as a major part of our global food supply, and as a
+      result, the swift detection of crop diseases is essential to maximizing
+      the output of our fields and ensuring the health of the ingredients used
+      in everyday products. However, manual detection of plant diseases is
+      tedious and slow; during the process of identification, disease continues
+      to propagate rapidly. It also requires a high level of expertise, and even
+      so, can be highly error prone [3]. Many of these reasons have spurred
+      research efforts to use machine learning techniques, like random forest
+      classifiers, to identify specific types of disease in certain crops in
+      order to aid in quick prevention of the spread of harmful blights [2].
+      Other papers have ventured beyond traditional machine learning methods;
+      one group used CNNs to classify a dataset of diseased and healthy plant
+      leaves to achieve a 99.3% accuracy [1]. We plan to use the PlantVillage
+      dataset, which contains 54,303 images of healthy and diseased plant leaves
+      from 13 species. It can be found here.
+    </p>
+    <h2>Problem Definition</h2>
+    <p>
+      We aim to develop a machine learning model that can differentiate between
+      whether a given leaf image is healthy or unhealthy across a variety of
+      species and diseases.
+    </p>
+    <h2>Preprocessing Methods</h2>
+    <p>
+      Contrast Enhancement We can utilize the scikit-image library (more
+      specifically, the rescale_intensity method) to increase the contrast in
+      the plant images, which would make it easier for our CNN model to identify
+      the plants from the background. Smoothing edges We can utilize the
+      gaussian function within the skimage.filters module to smooth edges and
+      remove noise from the plant leaf images. Using the gaussian function on
+      the plant images would remove any unnecessary features that don't
+      correlate with disease in the plant leaves, helping our ML algorithms
+      perform better. Grayscale We can utilize the rgb2gray method from the
+      skimage.color module to convert the colored plant leaf images to
+      grayscale. Training our machine learning model with both colored as well
+      as grayscale images would help the model identify disease utilizing the
+      color of the leaf as well as other important features (such as
+      lesions/spots).
+    </p>
+    <h2>3+ ML Algorithms/Models Identified</h2>
+    <p>
+      Convolutional Neural Network We can train a Convolutional Neural Network
+      (CNN) through TensorFlow by using Conv2D and MaxPooling2D layers. First,
+      the image features will be extracted with convolutional layers. Then, with
+      the FC layers and feature information, the model will conclude whether the
+      leaf is from a healthy or unhealthy plant. Decision Tree Classifier The
+      DecisionTreeClassifier class from Scikit can be used to classify leaf data
+      into classes of being healthy or unhealthy. Scikit used the CART
+      (Classification and Regression Trees) algorithm to back its decision tree
+      classifier, which diverges from the C4.5 algorithm in that it doesn’t
+      compute rule sets. A Bagging Classifier We could use
+      sklearn.ensemble.BaggingClassifier to classify our data. This classifier
+      works by choosing randomized subsets of data to classify. Then, by
+      combining the predictions from the randomized subsets, the classifier
+      forms a final prediction. By randomizing, this classifier is useful since
+      it reduces variance, helping reduce overfitting.
+    </p>
+    <h2>3+ Quantitative Metrics</h2>
+    <p>
+      Accuracy: Measure the proportion of correctly identified diseased plants:
+      metrics.accuracy_score(y_true, y_pred, *[, ...]) Precision: Measure
+      proportion of correctly identified diseased plants out of all plants
+      identified as diseased (true positives/true positives + false positives):
+      metrics.average_precision_score(y_true, ...) Recall: Measure proportion of
+      correctly identified diseased plants out of all actually diseased plants
+      (true positives/true positives + false negatives):
+      metrics.recall_score(y_true, y_pred, *[, ...]) F1 Score: Harmonic mean of
+      precision and recall: metrics.f1_score(y_true, y_pred, *[, ...]) Other
+      options: Confusion Matrix, ROC AUC Score
+    </p>
+    <h2>Project Goals</h2>
+    <p>
+      In this project, our goal is to develop an effective model to identify
+      diseased and healthy plants. We hope our model will have a classification
+      accuracy above 90% detection for healthy vs unhealthy. We aim for
+      precision and recall rates above 0.90 to indicate less false positives and
+      negatives as well as resulting F1 Score around 0.90 to indicate a balance
+      in the precision and recall.
+    </p>
+    <h2>References</h2>
+    <p>
+      [1] Hassan, S. M., & Maji, A. K. (2022). Plant disease identification
+      using a novel convolutional neural network. IEEE Access, 10, 5390–5401.
+      https://doi.org/10.1109/access.2022.3141371 [2] Kulkarni, P., Karwande,
+      A., Kolhe, T., Kamble, S., Joshi, A., & Wyawahare, M. (2021). Plant
+      Disease Detection Using Image Processing and Machine Learning.
+      https://doi.org/10.48550/arXiv.2106.10698 [3] Shoaib, M., Shah, B.,
+      EI-Sappagh, S., Ali, A., Ullah, A., Alenezi, F., Gechev, T., Hussain, T.,
+      & Ali, F. (2023). An advanced deep learning models-based Plant Disease
+      Detection: A review of recent research. Frontiers in Plant Science, 14.
+      https://doi.org/10.3389/fpls.2023.1158933
+    </p>
   </body>
 </html>
