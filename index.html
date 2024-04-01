@@ -28,8 +28,13 @@ layout: default
     grapes, and tomatoes, with various diseases such as black rot, common rust,
     and bacterial spot. It can be found
     <a href="https://www.tensorflow.org/datasets/catalog/plant_village">here</a
-    >.
+    >, and the below figure shows some example images from the dataset.
   </p>
+  <img
+    src="plantexamples.png"
+    alt="Examples of Images from Plant Village Dataset"
+    style="width: 700px; height: 500px"
+  />
   <h2>Problem Definition</h2>
   <p>
     The health of our crops is crucial for meeting our daily needs.
@@ -46,10 +51,19 @@ layout: default
     In order to preprocess our images, we utilized a grayscale method to create
     a grayscale version of the PlantVillage dataset. Opting for grayscale as our
     preprocessing technique allowed us to remove color bias from the model and
-    reduce computational complexity. For image classification, we employed a
-    decision tree model. We selected a decision tree for training as it is known
-    for its simplicity in computation compared to other models, yet remains
-    highly effective in hierarchically classifying images.
+    reduce computational complexity. Below is a figure displaying an example
+    image from the dataset in color and grayscaled.
+  </p>
+  <img
+    src="grayscaleimage.png"
+    alt="Example of Grayscaled Image"
+    style="width: 700px; height: 500px"
+  />
+  <p>
+    For image classification, we employed a decision tree model. We selected a
+    decision tree for training as it is known for its simplicity in computation
+    compared to other models, yet remains highly effective in hierarchically
+    classifying images.
   </p>
 
   <h2>Results and Discussion</h2>
@@ -66,31 +80,39 @@ layout: default
     style="width: 700px; height: 500px"
   />
   <p>
-    Click <a href="./dectree.txt">here</a> to see a figure demonstrating our
-    decision tree model as a tree.
+    The above graph displays how the accuracy of our decision tree model
+    improved with larger percents of the total data used. Unfortunately, as we
+    ran into out of RAM errors when using the full dataset, we were only able to
+    use 75% of the Plant Village dataset. However, we plan to fix these issues
+    so we can use all of our data when training the next two models for the
+    final project.
   </p>
   <h4>Quantitative Metrics</h4>
 
   <h5>Project Goals/Expected Results</h5>
-  <p> In this project, our goal is to develop an effective model to identify diseased 
-    and healthy plants. Our model will first take a leaf image of a plant conducting 
-    preprocessing to extract key features from the image such as identifying 
-    possible areas of lesions. We hope our model will have a classification accuracy 
-    above 90% detection for healthy vs unhealthy. This would indicate that our model 
-    can be trusted to give correct information, allowing more confident use when 
-    applied to the agricultural field. Some current models have achieved 96% 
-    accuracy such as the DBN [3]. Therefore, we’ve also set a similar more reasonable goal 
-    for our model given our resources. Likewise, we aim for precision and recall rates 
-    above 0.90 to indicate fewer false positives and negatives as well as resulting F1 
-    Score around 0.90. A high precision rate is critical in terms of the losses associated 
-    with false positives. If the model falsely classifies a crop as diseased, it could 
-    result in resources wasted on preventing the spread of disease or the extermination of 
-    healthy plants. A high recall rate is important for mitigating the risks of false 
-    negatives. If the model fails to classify a diseased crop, the disease would spread, 
-    killing fields of crops and resulting in significant economic loss for farms. 
-    The derived F1 Score is a concise representation of both false positives and negatives 
-    and an overall balance in precision and recall. </p>
-  
+  <p>
+    In this project, our goal is to develop an effective model to identify
+    diseased and healthy plants. Our model will first take a leaf image of a
+    plant conducting preprocessing to extract key features from the image such
+    as identifying possible areas of lesions. We hope our model will have a
+    classification accuracy above 90% detection for healthy vs unhealthy. This
+    would indicate that our model can be trusted to give correct information,
+    allowing more confident use when applied to the agricultural field. Some
+    current models have achieved 96% accuracy such as the DBN [3]. Therefore,
+    we’ve also set a similar more reasonable goal for our model given our
+    resources. Likewise, we aim for precision and recall rates above 0.90 to
+    indicate fewer false positives and negatives as well as resulting F1 Score
+    around 0.90. A high precision rate is critical in terms of the losses
+    associated with false positives. If the model falsely classifies a crop as
+    diseased, it could result in resources wasted on preventing the spread of
+    disease or the extermination of healthy plants. A high recall rate is
+    important for mitigating the risks of false negatives. If the model fails to
+    classify a diseased crop, the disease would spread, killing fields of crops
+    and resulting in significant economic loss for farms. The derived F1 Score
+    is a concise representation of both false positives and negatives and an
+    overall balance in precision and recall.
+  </p>
+
   <h5>Resulting Metrics</h5>
   <p>The metrics for our decision tree classifier were:</p>
   <ul>
@@ -99,7 +121,7 @@ layout: default
     <li><b>Recall:</b> 0.262174</li>
     <li><b>F1 Score:</b> 0.251980</li>
   </ul>
-  
+
   <h4>Analysis of Decision Tree</h4>
   <p>
     As seen in our metrics, though the decision tree classifier made significant
