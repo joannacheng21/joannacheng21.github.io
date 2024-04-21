@@ -47,6 +47,20 @@ layout: default
     protecting ecosystems from harm.
   </p>
   <h2>Methods</h2>
+  <h3>Preprocessing Mechanisms:</h3>
+  <h4>Data Augmentation</h4>
+  <p>
+    When training Resnet and our naive CNN, we employed several forms of data
+    augmentation to supplement our current dataset, including randomly rotating
+    images (by -180 to 180 degrees), and randomly altering the coloring of each
+    image (by reducing/increasing brightness, contrast, saturation, and hue by
+    up to 20%). As images in the dataset were taken in controlled conditions
+    (with the leaves in the same orientation, same lighting, etc.), applying
+    these transformations to the training dataset helped our CNN model become
+    more robust in being able to classify plant diseases outside of the realm of
+    the dataset.
+  </p>
+  <h4>Grayscale</h4>
   <p>
     In order to preprocess our images, we utilized a grayscale method to create
     a grayscale version of the PlantVillage dataset. Opting for grayscale as our
@@ -59,6 +73,8 @@ layout: default
     alt="Example of Grayscaled Image"
     style="width: 700px"
   />
+
+  <h3>Model #1 (Decision Tree)</h3>
   <p>
     For image classification, we employed a decision tree model. We selected a
     decision tree for training as it is known for its simplicity in computation
@@ -66,8 +82,63 @@ layout: default
     classifying images.
   </p>
 
+  <h3>Model #2 (Naive CNN)</h3>
+  <p>For our naive CNN model, our architecture looks like the following:</p>
+  <img src="cnnlayers.jpg" alt="Naive CNN Architecture" style="width: 700px" />
+  <p>
+    We trained our naive CNN using an Adam optimizer, the cross entropy loss
+    function, and trained the model over 25 epochs. We chose to train our own
+    CNN model as CNNs with convolutional and pooling layers in general are
+    highly effective at classifying images, and we wanted to compare this model
+    to the results of applying transfer learning using pre-trained CNNs.
+  </p>
+  <h3>Model #3 (ResNet CNN)</h3>
+  <p>
+    For our third model, we chose to employ transfer learning of ResNet. ResNet
+    is a popular CNN model that is known for introducing residual connections
+    which are used to handle the issue of the vanishing/exploding gradient. In
+    our ResNet model, we chose to use the weights of ImageNet1k, which is a
+    subset of the Image Net dataset that contains 1,000 image classes and over 1
+    million training images. We then fine tuned this model on Plant Village
+    using the Adam optimizer and the cross entropy loss function, training it
+    for 25 epochs. We chose to apply transfer learning on a highly popular CNN
+    model such as ResNet on the Plant Village dataset, as transfer learning is a
+    simple way of achieving high accuracy on image datasets without having to
+    train a CNN model from scratch. Thus, we wanted to evaluate the accuracy of
+    transfer learning on our specific dataset. Unsurprisingly, the ResNet model
+    was highly accurate!
+  </p>
+
   <h2>Results and Discussion</h2>
-  <h4>Visualizations:</h4>
+  <h3>Quantitative Metrics</h3>
+  <h4>Decision Tree Classifier</h4>
+  <ul>
+    <li><b>Accuracy:</b> 0.262706</li>
+    <li><b>Precision:</b> 0.262706</li>
+    <li><b>Recall:</b> 0.262174</li>
+    <li><b>F1 Score:</b> 0.251980</li>
+  </ul>
+
+  <h4>Naive CNN</h4>
+  <ul>
+    <li><b>Accuracy:</b> 0.894204</li>
+    <li><b>Precision:</b> 0.8972806176048754</li>
+    <li><b>Recall:</b> 0.8942042318307267</li>
+    <li><b>F1 Score:</b> 0.8910044947436387</li>
+    <li><b>Test Loss:</b> 0.306169</li>
+  </ul>
+
+  <h4>ResNet CNN</h4>
+  <ul>
+    <li><b>Accuracy:</b> 0.994480</li>
+    <li><b>Precision:</b> 0.9948139329328789</li>
+    <li><b>Recall:</b> 0.9944802207911684</li>
+    <li><b>F1 Score:</b> 0.9945378965591463</li>
+    <li><b>Test Loss:</b> 0.018061</li>
+  </ul>
+
+  <h3>Visualizations:</h3>
+  <h4>Decision Tree</h4>
   <p>
     When running our decision tree model, we trained on different percentages of
     the Plant Village dataset due to the computational complexity and time
@@ -86,6 +157,116 @@ layout: default
     use 75% of the Plant Village dataset. However, we plan to fix these issues
     so we can use all of our data when training the next two models for the
     final project.
+  </p>
+  <h4>Naive CNN</h4>
+  <h5>Confusion Matrix</h5>
+  <p>
+    Below is a Confusion Matrix depicting the results of our naive CNN model.
+  </p>
+  <img
+    src="confusionmatrix-naive.png"
+    alt="Confusion Matrix of Naive CNN"
+    style="width: 700px"
+  />
+  <img
+    src="loss-naive.jpg"
+    alt="Loss vs. Epoch - Naive CNN"
+    style="width: 700px"
+  />
+  <img
+    src="accuracy-naive.png"
+    alt="Accuracy vs. Epoch - Naive CNN"
+    style="width: 700px"
+  />
+
+  <h4>ResNet CNN</h4>
+  <h5>Confusion Matrix</h5>
+  <p>
+    Below is a Confusion Matrix depicting the results of our ResNet CNN model.
+  </p>
+  <img
+    src="confusion-resnet.jpg"
+    alt="Confusion Matrix of ResNet CNN"
+    style="width: 700px"
+  />
+  <img
+    src="loss-resnet.jpg"
+    alt="Loss vs. Epoch - ResNet CNN"
+    style="width: 700px"
+  />
+  <img
+    src="accuracy-resnet.png"
+    alt="Accuracy vs. Epoch - ResNet CNN"
+    style="width: 700px"
+  />
+
+  <h3>Analysis:</h3>
+  <h4>Decision Tree</h4>
+  <p>
+    As seen in our metrics, though the decision tree classifier made significant
+    progress from randomly guessing what disease a plant has, its accuracy is
+    still relatively low. This could be due to several reasons. Firstly,
+    decision tree models are not the best choice for image data, as image data
+    is high-dimensional (for example, our 256 x 256 pixel dataset led to 65,536
+    features for the decision tree). Additionally, decision trees consider each
+    feature separately without incorporating spatial information, which is
+    highly ineffective for image data. Finally, since our preprocessing
+    mechanism involved gray-scaling the images, this may have led to loss of
+    some valuable information that resulted in a lower accuracy of the model.
+    Thus, the relatively low accuracy for the decision tree trained on
+    PlantVillage is relatively expected.
+  </p>
+  <h4>Naive CNN</h4>
+  <p>
+    As seen in our metrics, the naive CNN model made significant progress from
+    our decision tree model, and achieved an accuracy of 89.4% on the testing
+    dataset. The high accuracy can be expected from a CNN, as they are
+    especially crafted to be able to detect patterns in images (using
+    convolutional layers/filters). However, the accuracy of our naive CNN was
+    lower than applying transfer learning using ResNet; this is likely due to
+    the higher complexity of ResNet when compared to our naive CNN, which may
+    not have been able to capture all the pieces of information in the images
+    necessary to correctly classify them, and the fact that ResNet had
+    pretrained weights on the Image Net dataset (which is much larger than Plant
+    Village).
+  </p>
+  <h4>ResNet CNN</h4>
+  <p>
+    As seen in our metrics, the ResNet model was the best performing model
+    compared to the decision tree and naive CNN. After being trained 25 epochs,
+    the ResNet achieved an accuracy of 99.44% on the testing dataset. The
+    extremely high accuracy of the ResNet model is due to its higher complexity
+    and the fact that we utilized transfer learning instead of training the CNN
+    from scratch. As the weights we used were from the ResNet being trained on
+    the ImageNet dataset, the ResNet had already learned many features that were
+    useful in classifying plant diseases as well. Thus, 25 epochs of training
+    were enough for the ResNet to achieve an extremely high accuracy.
+  </p>
+  <h4>Comparison of Models</h4>
+  <p>
+    In terms of accuracy on the testing dataset, the ordering of the models in
+    terms of highest to lowest accuracy is the ResNet CNN, the naive CNN, and
+    then the decision tree. The decision tree model was the simplest model out
+    of the three, which is a large factor for why it had the lowest accuracy.
+    Decision trees are not optimized to handle image data, unlike CNNs.
+    Comparing the naive CNN and the ResNet CNN, transfer learning was more
+    successful due to the fact that ResNet was already pre-trained before we
+    performed transfer learning on the Plant Village Dataset. The ResNet
+    architecture is also more complex compared to our naive CNN, meaning it has
+    more room to learn patterns in the dataset.
+  </p>
+
+  <h3>Next Steps:</h3>
+  <p>
+    Our next steps involve attempting to improve our naive CNN model so that its
+    accuracy is higher than our initial goal of 90%. We plan to do this by
+    adding more layers to the CNN model. Also, though we have only been
+    utilizing the Plant Village dataset so far, we would like to build a larger
+    set of plant disease images, so that our model will be more effective at
+    predicting diseases from images of plants in the real world. We also plan to
+    investigate other pre-processing mechanisms; for example, we plan to run PCA
+    (Principal Component Analysis) on the images to reduce the complexity of the
+    input space and see how that affects accuracy.
   </p>
 
   <h5>Project Goals/Expected Results</h5>
@@ -110,46 +291,6 @@ layout: default
     and resulting in significant economic loss for farms. The derived F1 Score
     is a concise representation of both false positives and negatives and an
     overall balance in precision and recall.
-  </p>
-
-  <h5>Resulting Metrics</h5>
-  <p>The metrics for our decision tree classifier were:</p>
-  <ul>
-    <li><b>Accuracy:</b> 0.262706</li>
-    <li><b>Precision:</b> 0.262706</li>
-    <li><b>Recall:</b> 0.262174</li>
-    <li><b>F1 Score:</b> 0.251980</li>
-  </ul>
-
-  <h4>Analysis of Decision Tree</h4>
-  <p>
-    As seen in our metrics, though the decision tree classifier made significant
-    progress from randomly guessing what disease a plant has, its accuracy is
-    still relatively low. This could be due to several reasons. Firstly,
-    decision tree models are not the best choice for image data, as image data
-    is high-dimensional (for example, our 256 x 256 pixel dataset led to 65,536
-    features for the decision tree). Additionally, decision trees consider each
-    feature separately without incorporating spatial information, which is
-    highly ineffective for image data. Finally, since our preprocessing
-    mechanism involved gray-scaling the images, this may have led to loss of
-    some valuable information that resulted in a lower accuracy of the model.
-    Thus, the relatively low accuracy for the decision tree trained on
-    PlantVillage is relatively expected.
-  </p>
-
-  <h4>Next Steps</h4>
-  <p>
-    Our next steps involve training a CNN (convolutional neural network) to
-    classify plant diseases from the Plant Village dataset. We expect that our
-    CNN model will be much more accurate, as CNNs are optimized and built to
-    find patterns in and classify images. They eliminate all the drawbacks
-    mentioned as the causes for low accuracy in our decision tree model, as they
-    can accommodate the high-dimensional data associated with images, and use
-    convolutions to detect important features in images. In addition to training
-    models such as CNNs on our data, we also plan to investigate other
-    pre-processing mechanisms; for example, we plan to run PCA (Principal
-    Component Analysis) on the images to reduce the complexity of the input
-    space.
   </p>
 
   <h2>References</h2>
