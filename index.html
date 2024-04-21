@@ -113,28 +113,28 @@ layout: default
   <h3>Quantitative Metrics</h3>
   <h4>Decision Tree Classifier</h4>
   <ul>
-    <li><b>Accuracy:</b> 0.262706</li>
-    <li><b>Precision:</b> 0.262706</li>
-    <li><b>Recall:</b> 0.262174</li>
-    <li><b>F1 Score:</b> 0.251980</li>
+    <li><b>Accuracy:</b> 0.26271</li>
+    <li><b>Precision:</b> 0.26271</li>
+    <li><b>Recall:</b> 0.26217</li>
+    <li><b>F1 Score:</b> 0.25198</li>
   </ul>
 
   <h4>Naive CNN</h4>
   <ul>
-    <li><b>Accuracy:</b> 0.894204</li>
-    <li><b>Precision:</b> 0.8972806176048754</li>
-    <li><b>Recall:</b> 0.8942042318307267</li>
-    <li><b>F1 Score:</b> 0.8910044947436387</li>
-    <li><b>Test Loss:</b> 0.306169</li>
+    <li><b>Accuracy:</b> 0.89420</li>
+    <li><b>Precision:</b> 0.89728</li>
+    <li><b>Recall:</b> 0.89420</li>
+    <li><b>F1 Score:</b> 0.89100</li>
+    <li><b>Test Loss:</b> 0.30617</li>
   </ul>
 
   <h4>ResNet CNN</h4>
   <ul>
-    <li><b>Accuracy:</b> 0.994480</li>
-    <li><b>Precision:</b> 0.9948139329328789</li>
-    <li><b>Recall:</b> 0.9944802207911684</li>
-    <li><b>F1 Score:</b> 0.9945378965591463</li>
-    <li><b>Test Loss:</b> 0.018061</li>
+    <li><b>Accuracy:</b> 0.99448</li>
+    <li><b>Precision:</b> 0.99481</li>
+    <li><b>Recall:</b> 0.99448</li>
+    <li><b>F1 Score:</b> 0.99454</li>
+    <li><b>Test Loss:</b> 0.01806</li>
   </ul>
 
   <h3>Visualizations:</h3>
@@ -255,6 +255,19 @@ layout: default
     architecture is also more complex compared to our naive CNN, meaning it has
     more room to learn patterns in the dataset.
   </p>
+  <h4>Evaluation of Goals</h4>
+  <p>
+    At the beginning of the project, we aimed to have a 90% classification
+    accuracy for healthy vs. unhealthy, as well as precision/recall rates and an
+    F1 score above 0.9. We were able to achieve and surpass our goals, as ResNet
+    was able to hit an accuracy, precision rate, recall rate, and F1 score above
+    0.99, and our own CNN architecture had an accuracy, precision rate, recall
+    rate, and F1 score of above 0.89, almost reaching our goal. Also, we
+    originally only planned to classify healthy vs. unhealthy, but we were able
+    to train our models to classify the specific disease labels given in the
+    dataset, which is even more specific than we planned. Overall, we were
+    successful in reaching our original goals.
+  </p>
 
   <h3>Next Steps:</h3>
   <p>
@@ -267,30 +280,6 @@ layout: default
     investigate other pre-processing mechanisms; for example, we plan to run PCA
     (Principal Component Analysis) on the images to reduce the complexity of the
     input space and see how that affects accuracy.
-  </p>
-
-  <h3>Project Goals/Expected Results</h3>
-  <p>
-    In this project, our goal is to develop an effective model to identify
-    diseased and healthy plants. Our model will first take a leaf image of a
-    plant conducting preprocessing to extract key features from the image such
-    as identifying possible areas of lesions. We hope our model will have a
-    classification accuracy above 90% detection for healthy vs unhealthy. This
-    would indicate that our model can be trusted to give correct information,
-    allowing more confident use when applied to the agricultural field. Some
-    current models have achieved 96% accuracy such as the DBN [3]. Therefore,
-    we’ve also set a similar more reasonable goal for our model given our
-    resources. Likewise, we aim for precision and recall rates above 0.90 to
-    indicate fewer false positives and negatives as well as resulting F1 Score
-    around 0.90. A high precision rate is critical in terms of the losses
-    associated with false positives. If the model falsely classifies a crop as
-    diseased, it could result in resources wasted on preventing the spread of
-    disease or the extermination of healthy plants. A high recall rate is
-    important for mitigating the risks of false negatives. If the model fails to
-    classify a diseased crop, the disease would spread, killing fields of crops
-    and resulting in significant economic loss for farms. The derived F1 Score
-    is a concise representation of both false positives and negatives and an
-    overall balance in precision and recall.
   </p>
 
   <h2>References</h2>
