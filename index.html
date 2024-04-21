@@ -62,11 +62,12 @@ layout: default
   </p>
   <h4>Grayscale</h4>
   <p>
-    In order to preprocess our images, we utilized a grayscale method to create
-    a grayscale version of the PlantVillage dataset. Opting for grayscale as our
-    preprocessing technique allowed us to remove color bias from the model and
-    reduce computational complexity. Below is a figure displaying an example
-    image from the dataset in color and grayscaled.
+    In order to preprocess our images for training with the decision tree, we
+    utilized a grayscale method to create a grayscale version of the
+    PlantVillage dataset. Opting for grayscale as our preprocessing technique
+    allowed us to remove color bias from the model and reduce computational
+    complexity. Below is a figure displaying an example image from the dataset
+    in color and grayscaled.
   </p>
   <img
     src="grayscaleimage.png"
@@ -159,15 +160,19 @@ layout: default
     final project.
   </p>
   <h4>Naive CNN</h4>
-  <h5>Confusion Matrix</h5>
   <p>
-    Below is a Confusion Matrix depicting the results of our naive CNN model.
+    Below is a confusion matrix, loss graph, and accuracy graph for our naive
+    CNN model.
   </p>
   <img
     src="confusionmatrix-naive.png"
     alt="Confusion Matrix of Naive CNN"
-    style="width: 700px"
+    style="width: 900px"
   />
+  <p>
+    We can see that our CNN made very few wrong classifications and did not
+    consistently classify one label as another label.
+  </p>
   <img
     src="loss-naive.jpg"
     alt="Loss vs. Epoch - Naive CNN"
@@ -178,17 +183,33 @@ layout: default
     alt="Accuracy vs. Epoch - Naive CNN"
     style="width: 700px"
   />
+  <p>
+    From the graphs, we can see that training loss decreased until about 0.5 at
+    epoch 15 or so, and accuracy increased until about 0.9 at epoch 15. Both
+    loss and accuracy mostly plateaued after epoch 15. The validation accuracy
+    was slightly above the training accuracy the entire time, and we believe
+    this is because we applied the random transformations for data augmentation
+    (like random rotation and color jittering) only on the training set and not
+    on the validation set. Since validation accuracy was not significantly lower
+    than training accuracy for the entirety of training, this means our model
+    did not overfit.
+  </p>
 
   <h4>ResNet CNN</h4>
   <h5>Confusion Matrix</h5>
   <p>
-    Below is a Confusion Matrix depicting the results of our ResNet CNN model.
+    Below is a confusion matrix, loss graph, and accuracy graph for our naive
+    CNN model.
   </p>
   <img
     src="confusion-resnet.jpg"
     alt="Confusion Matrix of ResNet CNN"
-    style="width: 700px"
+    style="width: 900px"
   />
+  <p>
+    We can see that ResNet made extremely few wrong classifications and did not
+    consistently classify one label as another label.
+  </p>
   <img
     src="loss-resnet.jpg"
     alt="Loss vs. Epoch - ResNet CNN"
@@ -199,6 +220,13 @@ layout: default
     alt="Accuracy vs. Epoch - ResNet CNN"
     style="width: 700px"
   />
+  <p>
+    From the graphs, we can see that training loss decreased until about 0.02 at
+    epoch 15 or so, and accuracy increased until about 0.99 at epoch 15. Both
+    loss and accuracy mostly plateaued after epoch 15. Training and validation
+    accuracy were very similar for the entirety of training, meaning that our
+    model did not overfit.
+  </p>
 
   <h3>Analysis:</h3>
   <h4>Decision Tree</h4>
